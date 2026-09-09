@@ -1,6 +1,6 @@
 ## Deployment
 
-OpenSRE has two primary AWS EC2 paths and a general hosted runtime option for
+AegisOps has two primary AWS EC2 paths and a general hosted runtime option for
 ASGI-compatible platforms:
 
 - **Slack** — deployed and operated separately, not from this repo. The EC2

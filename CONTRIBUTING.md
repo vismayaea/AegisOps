@@ -1,6 +1,6 @@
 # Contributing
 
-Welcome to OpenSRE
+Welcome to AegisOps
 
 ## Quick Links
 

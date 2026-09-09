@@ -1,0 +1,36 @@
+services:
+  aegisops-target-api:
+    image: python:3.12-slim
+    working_dir: /app
+    volumes:
+      - ..:/app
+    command: >-
+      sh -c "pip install fastapi uvicorn && uvicorn integrations.simulations.aegisops_target:create_target_app --factory --host 0.0.0.0 --port 8088"
+    ports:
+      - "8088:8088"
+    environment:
+      PYTHONPATH: /app
+
+  aegisops-target-worker:
+    image: python:3.12-slim
+    working_dir: /app
+    volumes:
+      - ..:/app
+    command: >-
+      sh -c "python -c \"from integrations.simulations.aegisops_target import SimulationTarget; print('worker-ready')\""
+    environment:
+      PYTHONPATH: /app
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: aegisops
+      POSTGRES_PASSWORD: aegisops
+      POSTGRES_DB: simulation
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"

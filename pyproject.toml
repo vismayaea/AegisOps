@@ -3,16 +3,16 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "opensre"
+name = "aegisops"
 version = "0.1"
-description = "Open-source SRE agent for automated incident investigation and root cause analysis. Automatically analyzes alerts from Slack, Grafana, Datadog, and other tooling."
+description = "AegisOps Autonomous AI Incident Response & SRE Platform. Evidence-driven incident investigation, risk-aware remediation, and recovery verification built on the OpenSRE-derived runtime."
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "Apache-2.0" }
 authors = [
-  { name = "OpenSRE", email = "support@opensre.com" },
+  { name = "AegisOps", email = "support@aegisops.dev" },
 ]
-keywords = ["sre", "devops", "incident", "rca", "llm", "ai", "agent", "observability"]
+keywords = ["aegisops", "sre", "incident-response", "ai-operations", "devops", "incident", "rca", "llm", "ai", "agent", "observability"]
 dependencies = [
     # Core AI/Agent
     "anthropic>=0.77.1",
@@ -89,6 +89,7 @@ Homepage = "https://github.com/Tracer-Cloud/opensre"
 Repository = "https://github.com/Tracer-Cloud/opensre"
 Issues = "https://github.com/Tracer-Cloud/opensre/issues"
 Changelog = "https://github.com/Tracer-Cloud/opensre/releases"
+Documentation = "https://github.com/Tracer-Cloud/opensre/tree/main/docs"
 
 [project.scripts]
 opensre = "surfaces.entrypoint:main"

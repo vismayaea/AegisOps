@@ -1,4 +1,4 @@
-## OpenSRE Development Reference
+## AegisOps Development Reference
 
 ## CI failures and tests (mandatory — every PR / push)
 

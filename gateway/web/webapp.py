@@ -834,6 +834,24 @@ def _build_dashboard_html() -> str:
       letter-spacing: 0.09em;
       text-transform: uppercase;
     }
+    .timeline-flow span.active {
+      background: rgba(112,214,255,0.1);
+      border-color: rgba(112,214,255,0.4);
+      color: var(--primary);
+      box-shadow: inset 0 0 0 1px rgba(112,214,255,0.12);
+    }
+    .demo-note {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,191,105,0.18);
+      border-radius: 10px;
+      background: rgba(255,191,105,0.08);
+      color: var(--warning);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+    }
     .hidden { display: none; }
     @media (max-width: 980px) {
       .stats, .panel-grid, .flow-row, .system-map, .target-system-grid, .evidence-grid, .timeline-flow { grid-template-columns: 1fr; }
@@ -880,8 +898,9 @@ def _build_dashboard_html() -> str:
       <section class="card target-system-card">
         <div class="panel-title-row">
           <div class="panel-title">Target System</div>
-          <div class="simulated-pill">🚨 SIMULATED INCIDENT</div>
+          <div class="simulated-pill">SIMULATION / DEMO DATA</div>
         </div>
+        <div class="demo-note">LIVE BACKEND: health and readiness checks. INCIDENT PATH: controlled simulation lab data.</div>
 
         <div class="system-map">
           <div class="system-graph">
@@ -967,6 +986,7 @@ def _build_dashboard_html() -> str:
             <button class="incident-btn" data-incident="database">Database Failure</button>
             <button class="incident-btn" data-incident="redis">Redis Outage</button>
             <button class="incident-btn" data-incident="errors">High Error Rate</button>
+            <button class="incident-btn reset-btn" data-incident="reset">Reset / Normalize</button>
           </div>
         </div>
 
@@ -1031,18 +1051,18 @@ def _build_dashboard_html() -> str:
         </div>
 
         <div class="timeline-flow">
-          <span>Detection</span>
-          <span>Investigation</span>
+          <span class="active">Healthy</span>
+          <span class="active">Detected</span>
           <span>Evidence</span>
+          <span>Investigation</span>
           <span>RCA</span>
           <span>Risk</span>
           <span>Remediation</span>
-          <span>Verification</span>
-          <span>Recovery</span>
+          <span>Resolved</span>
         </div>
 
         <div id="incidentSummary" class="narrative-box">
-          <div class="detail-row"><span class="detail-label">INCIDENT DETECTED</span><span class="detail-value">No active incident.</span></div>
+          <div class="detail-row"><span class="detail-label">HEALTHY → INCIDENT DETECTED → EVIDENCE COLLECTED → AI INVESTIGATING → ROOT CAUSE IDENTIFIED → RISK ASSESSED → REMEDIATION AUTHORIZED → RECOVERY VERIFIED</span><span class="detail-value">No active incident.</span></div>
         </div>
         <div class="status-banner hidden" id="finalStatusBanner">🟢 INCIDENT RESOLVED</div>
       </section>
@@ -1074,6 +1094,34 @@ def _build_dashboard_html() -> str:
     ];
 
     const incidentCatalog = {
+      reset: {
+        title: 'READY',
+        service: 'checkout-api',
+        severity: 'LOW',
+        severityClass: 'severity-low',
+        latency: '120 ms',
+        errorRate: '0.4%',
+        confidence: 0,
+        blastRadius: 0,
+        actionReversibility: 100,
+        historicalRisk: 0,
+        rootCause: 'Standby',
+        evidence: 'No active incident',
+        remediation: 'Await next trigger',
+        status: 'READY',
+        finalStatus: 'HEALTHY',
+        riskScore: 0,
+        decision: 'SAFE / READY',
+        decisionClass: 'auto',
+        activeIncidentCount: 0,
+        lifecycle: [
+          '✓ Healthy',
+          '✓ Monitoring',
+          '✓ No critical anomaly'
+        ],
+        summaryTitle: 'HEALTHY',
+        summaryContent: 'Service: checkout-api | Status: healthy | No incident in flight.'
+      },
       latency: {
         title: 'API LATENCY SPIKE',
         service: 'checkout-api',
@@ -1270,6 +1318,11 @@ def _build_dashboard_html() -> str:
     }
 
     function setDemoState(name) {
+      if (name === 'reset') {
+        resetDemo();
+        return;
+      }
+
       const incident = incidentCatalog[name] || incidentCatalog.latency;
       const risk = riskFromInputs(incident);
       const useRiskScore = incident.riskScore ?? risk.score;
@@ -1292,7 +1345,7 @@ def _build_dashboard_html() -> str:
       document.getElementById('finalStatusBanner').classList.remove('hidden');
       document.getElementById('finalStatusBanner').textContent = incident.finalStatus;
       document.getElementById('incidentSummary').innerHTML = `
-        <div class="detail-row"><span class="detail-label">INCIDENT DETECTED</span><span class="detail-value">${incident.summaryTitle}</span></div>
+        <div class="detail-row"><span class="detail-label">HEALTHY → INCIDENT DETECTED → EVIDENCE COLLECTED → AI INVESTIGATING → ROOT CAUSE IDENTIFIED → RISK ASSESSED → REMEDIATION AUTHORIZED → RECOVERY VERIFIED</span><span class="detail-value">${incident.summaryTitle}</span></div>
         <div class="detail-row"><span class="detail-label">Service</span><span class="detail-value">${incident.service}</span></div>
         <div class="detail-row"><span class="detail-label">Severity</span><span class="detail-value"><span class="severity-tag ${incident.severityClass}">${incident.severity}</span></span></div>
         <div class="detail-row"><span class="detail-label">Latency</span><span class="detail-value">${incident.latency}</span></div>
@@ -1305,7 +1358,8 @@ def _build_dashboard_html() -> str:
       document.getElementById('incidentCounter').textContent = incident.activeIncidentCount;
       document.getElementById('incidentCounterMini').textContent = incident.activeIncidentCount;
       document.querySelectorAll('.incident-btn').forEach((button) => {
-        button.classList.toggle('active', button.dataset.incident === name);
+        const isSelected = button.dataset.incident === name;
+        button.classList.toggle('active', isSelected);
       });
 
       window.clearTimeout(window.__aegisopsRecoveryTimer);

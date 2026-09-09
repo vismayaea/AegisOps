@@ -17,6 +17,210 @@ resolution-markers = [
 ]
 
 [[package]]
+name = "aegisops"
+version = "0.1"
+source = { editable = "." }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "anthropic" },
+    { name = "apscheduler" },
+    { name = "boto3" },
+    { name = "click" },
+    { name = "clickhouse-connect" },
+    { name = "cryptography" },
+    { name = "discord-py" },
+    { name = "fastapi" },
+    { name = "filelock" },
+    { name = "google-api-python-client" },
+    { name = "google-auth" },
+    { name = "httpx", extra = ["socks"] },
+    { name = "kubernetes" },
+    { name = "litellm" },
+    { name = "mcp" },
+    { name = "numpy" },
+    { name = "openai" },
+    { name = "opentelemetry-api" },
+    { name = "opentelemetry-exporter-otlp-proto-http" },
+    { name = "opentelemetry-instrumentation" },
+    { name = "opentelemetry-instrumentation-botocore" },
+    { name = "opentelemetry-instrumentation-requests" },
+    { name = "opentelemetry-sdk" },
+    { name = "prompt-toolkit" },
+    { name = "psutil" },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "pyjwt" },
+    { name = "pymongo" },
+    { name = "pymysql" },
+    { name = "pynacl" },
+    { name = "python-dotenv" },
+    { name = "pyyaml" },
+    { name = "questionary" },
+    { name = "redis" },
+    { name = "rich" },
+    { name = "sentry-sdk" },
+    { name = "slack-sdk" },
+    { name = "tracer-decorator" },
+    { name = "tzdata" },
+    { name = "uvicorn", extra = ["standard"] },
+]
+
+[package.optional-dependencies]
+azure-sql = [
+    { name = "pyodbc" },
+]
+clickhouse = [
+    { name = "clickhouse-connect" },
+]
+dev = [
+    { name = "boto3-stubs", extra = ["essential"] },
+    { name = "datasets" },
+    { name = "huggingface-hub" },
+    { name = "import-linter" },
+    { name = "mypy" },
+    { name = "pre-commit" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "pytest-cov" },
+    { name = "pytest-timeout" },
+    { name = "pytest-xdist" },
+    { name = "ruff" },
+    { name = "types-psutil" },
+    { name = "types-psycopg2" },
+    { name = "types-pymysql" },
+    { name = "types-pyyaml" },
+    { name = "types-requests" },
+    { name = "vulture" },
+]
+kafka = [
+    { name = "confluent-kafka" },
+]
+opensre-hub = [
+    { name = "datasets" },
+    { name = "huggingface-hub" },
+]
+postgresql = [
+    { name = "psycopg2-binary" },
+]
+release = [
+    { name = "build" },
+    { name = "pyinstaller" },
+    { name = "twine" },
+]
+release-binary = [
+    { name = "pyinstaller" },
+]
+release-dist = [
+    { name = "build" },
+    { name = "twine" },
+]
+yandex-cloud-logs = [
+    { name = "yandexcloud" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "import-linter" },
+    { name = "pre-commit" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "pytest-timeout" },
+    { name = "types-psutil" },
+    { name = "types-pyyaml" },
+    { name = "vulture" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aiohttp", specifier = ">=3.9.0" },
+    { name = "anthropic", specifier = ">=0.77.1" },
+    { name = "apscheduler", specifier = ">=3.10.0,<4.0.0" },
+    { name = "boto3", specifier = ">=1.42.88" },
+    { name = "boto3-stubs", extras = ["essential"], marker = "extra == 'dev'" },
+    { name = "build", marker = "extra == 'release'", specifier = ">=1.2.0" },
+    { name = "build", marker = "extra == 'release-dist'", specifier = ">=1.2.0" },
+    { name = "click", specifier = ">=8.1.0" },
+    { name = "clickhouse-connect", specifier = ">=0.15.1,<1.0.0" },
+    { name = "clickhouse-connect", marker = "extra == 'clickhouse'", specifier = ">=0.15.1" },
+    { name = "confluent-kafka", marker = "extra == 'kafka'", specifier = ">=2.14.0" },
+    { name = "cryptography", specifier = ">=50.0.0,<51" },
+    { name = "datasets", marker = "extra == 'dev'", specifier = ">=3.0.0" },
+    { name = "datasets", marker = "extra == 'opensre-hub'", specifier = ">=3.0.0" },
+    { name = "discord-py", specifier = ">=2.4.0,<3" },
+    { name = "fastapi", specifier = ">=0.135.3" },
+    { name = "filelock", specifier = ">=3.29.0" },
+    { name = "google-api-python-client", specifier = ">=2.194.0,<3.0.0" },
+    { name = "google-auth", specifier = ">=2.0.0,<3.0.0" },
+    { name = "httpx", extras = ["socks"], specifier = ">=0.27.0" },
+    { name = "huggingface-hub", marker = "extra == 'dev'", specifier = ">=0.26.0" },
+    { name = "huggingface-hub", marker = "extra == 'opensre-hub'", specifier = ">=0.26.0" },
+    { name = "import-linter", marker = "extra == 'dev'", specifier = ">=2.0" },
+    { name = "kubernetes", specifier = ">=28.1.0" },
+    { name = "litellm", specifier = ">=1.90.0,<1.96.0" },
+    { name = "mcp", specifier = ">=1.28.1" },
+    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.10.0" },
+    { name = "numpy", specifier = ">=1.26.0" },
+    { name = "openai", specifier = ">=2.0.0" },
+    { name = "opentelemetry-api", specifier = ">=1.41.0" },
+    { name = "opentelemetry-exporter-otlp-proto-http", specifier = ">=1.41.0" },
+    { name = "opentelemetry-instrumentation", specifier = ">=0.40b0" },
+    { name = "opentelemetry-instrumentation-botocore", specifier = ">=0.40b0" },
+    { name = "opentelemetry-instrumentation-requests", specifier = ">=0.40b0" },
+    { name = "opentelemetry-sdk", specifier = ">=1.20.0" },
+    { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=4.0.0" },
+    { name = "prompt-toolkit", specifier = ">=3.0.0" },
+    { name = "psutil", specifier = ">=5.9" },
+    { name = "psycopg2-binary", marker = "extra == 'postgresql'", specifier = ">=2.9.0,<3.0.0" },
+    { name = "pydantic", specifier = ">=2.12.5,<3" },
+    { name = "pydantic-settings", specifier = ">=2.12.0,<3" },
+    { name = "pyinstaller", marker = "extra == 'release'", specifier = ">=6.3.0" },
+    { name = "pyinstaller", marker = "extra == 'release-binary'", specifier = ">=6.3.0" },
+    { name = "pyjwt", specifier = ">=2.13.0" },
+    { name = "pymongo", specifier = ">=4.6.0,<6.0.0" },
+    { name = "pymysql", specifier = ">=1.1.0,<2.0.0" },
+    { name = "pynacl", specifier = ">=1.5.0" },
+    { name = "pyodbc", marker = "extra == 'azure-sql'", specifier = ">=5.1.0,<6.0.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=1.3.0" },
+    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=7.1.0" },
+    { name = "pytest-timeout", marker = "extra == 'dev'", specifier = ">=2.3.0" },
+    { name = "pytest-xdist", marker = "extra == 'dev'", specifier = ">=3.5.0" },
+    { name = "python-dotenv", specifier = ">=1.2.2" },
+    { name = "pyyaml", specifier = ">=6.0" },
+    { name = "questionary", specifier = ">=2.1.1" },
+    { name = "redis", specifier = ">=5.0.0,<9.0.0" },
+    { name = "rich", specifier = ">=15.0.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.4.0" },
+    { name = "sentry-sdk", specifier = ">=2.59.0" },
+    { name = "slack-sdk", specifier = ">=3.31.0" },
+    { name = "tracer-decorator" },
+    { name = "twine", marker = "extra == 'release'", specifier = ">=6.0.0" },
+    { name = "twine", marker = "extra == 'release-dist'", specifier = ">=6.0.0" },
+    { name = "types-psutil", marker = "extra == 'dev'" },
+    { name = "types-psycopg2", marker = "extra == 'dev'" },
+    { name = "types-pymysql", marker = "extra == 'dev'" },
+    { name = "types-pyyaml", marker = "extra == 'dev'" },
+    { name = "types-requests", marker = "extra == 'dev'" },
+    { name = "tzdata", specifier = ">=2026.1" },
+    { name = "uvicorn", extras = ["standard"], specifier = ">=0.30.0" },
+    { name = "vulture", marker = "extra == 'dev'", specifier = ">=2.14" },
+    { name = "yandexcloud", marker = "extra == 'yandex-cloud-logs'", specifier = ">=0.300.0" },
+]
+provides-extras = ["dev", "release-dist", "release-binary", "release", "opensre-hub", "kafka", "clickhouse", "postgresql", "azure-sql", "yandex-cloud-logs"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "import-linter", specifier = ">=2.0" },
+    { name = "pre-commit", specifier = ">=4.0.0" },
+    { name = "pytest", specifier = ">=9.0.3" },
+    { name = "pytest-cov", specifier = ">=7.1.0" },
+    { name = "pytest-timeout", specifier = ">=2.3.0" },
+    { name = "types-psutil", specifier = ">=7.2.2.20260408" },
+    { name = "types-pyyaml", specifier = ">=6.0.12" },
+    { name = "vulture", specifier = ">=2.14" },
+]
+
+[[package]]
 name = "aiohappyeyeballs"
 version = "2.6.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1330,8 +1534,8 @@ name = "httpcore2"
 version = "2.12.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "h11", marker = "sys_platform != 'emscripten'" },
-    { name = "truststore", marker = "sys_platform != 'emscripten'" },
+    { name = "h11" },
+    { name = "truststore" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/be/ad/f4f0e57345f1870f3e8cb624e058d7eca6e5a27d33bcc3311d9b618734cd/httpcore2-2.12.0.tar.gz", hash = "sha256:9293522bba0aa7c4c8e9e3f040c16575bd8868e155a77fa30c7a9085a5eae648", size = 67548, upload-time = "2026-08-18T13:22:08.211Z" }
 wheels = [
@@ -1849,7 +2053,7 @@ name = "macholib"
 version = "1.16.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "altgraph", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "altgraph" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/10/2f/97589876ea967487978071c9042518d28b958d87b17dceb7cdc1d881f963/macholib-1.16.4.tar.gz", hash = "sha256:f408c93ab2e995cd2c46e34fe328b130404be143469e41bc366c807448979362", size = 59427, upload-time = "2025-11-22T08:28:38.373Z" }
 wheels = [
@@ -2371,210 +2575,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/ef/cf/36e3e7235fdf6d125c052acc0970924611b17a20a4fe580596faf4566a65/openai-2.53.0.tar.gz", hash = "sha256:baf5802ad08980e1d9d561e1b996e800c8bcd14af5847c6d0e7a5cc59e4d4116", size = 1099435, upload-time = "2026-08-03T21:42:01.664Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/78/0f/cc6afea3542a5142c5d8fc8211c5e059a8375105d004a41dfa2c7948dbb0/openai-2.53.0-py3-none-any.whl", hash = "sha256:c694ffc747a3c4d1663ef2b07b811315a476164ee5efa3a993967349ebca7618", size = 1659829, upload-time = "2026-08-03T21:41:59.581Z" },
-]
-
-[[package]]
-name = "opensre"
-version = "0.1"
-source = { editable = "." }
-dependencies = [
-    { name = "aiohttp" },
-    { name = "anthropic" },
-    { name = "apscheduler" },
-    { name = "boto3" },
-    { name = "click" },
-    { name = "clickhouse-connect" },
-    { name = "cryptography" },
-    { name = "discord-py" },
-    { name = "fastapi" },
-    { name = "filelock" },
-    { name = "google-api-python-client" },
-    { name = "google-auth" },
-    { name = "httpx", extra = ["socks"] },
-    { name = "kubernetes" },
-    { name = "litellm" },
-    { name = "mcp" },
-    { name = "numpy" },
-    { name = "openai" },
-    { name = "opentelemetry-api" },
-    { name = "opentelemetry-exporter-otlp-proto-http" },
-    { name = "opentelemetry-instrumentation" },
-    { name = "opentelemetry-instrumentation-botocore" },
-    { name = "opentelemetry-instrumentation-requests" },
-    { name = "opentelemetry-sdk" },
-    { name = "prompt-toolkit" },
-    { name = "psutil" },
-    { name = "pydantic" },
-    { name = "pydantic-settings" },
-    { name = "pyjwt" },
-    { name = "pymongo" },
-    { name = "pymysql" },
-    { name = "pynacl" },
-    { name = "python-dotenv" },
-    { name = "pyyaml" },
-    { name = "questionary" },
-    { name = "redis" },
-    { name = "rich" },
-    { name = "sentry-sdk" },
-    { name = "slack-sdk" },
-    { name = "tracer-decorator" },
-    { name = "tzdata" },
-    { name = "uvicorn", extra = ["standard"] },
-]
-
-[package.optional-dependencies]
-azure-sql = [
-    { name = "pyodbc" },
-]
-clickhouse = [
-    { name = "clickhouse-connect" },
-]
-dev = [
-    { name = "boto3-stubs", extra = ["essential"] },
-    { name = "datasets" },
-    { name = "huggingface-hub" },
-    { name = "import-linter" },
-    { name = "mypy" },
-    { name = "pre-commit" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "pytest-cov" },
-    { name = "pytest-timeout" },
-    { name = "pytest-xdist" },
-    { name = "ruff" },
-    { name = "types-psutil" },
-    { name = "types-psycopg2" },
-    { name = "types-pymysql" },
-    { name = "types-pyyaml" },
-    { name = "types-requests" },
-    { name = "vulture" },
-]
-kafka = [
-    { name = "confluent-kafka" },
-]
-opensre-hub = [
-    { name = "datasets" },
-    { name = "huggingface-hub" },
-]
-postgresql = [
-    { name = "psycopg2-binary" },
-]
-release = [
-    { name = "build" },
-    { name = "pyinstaller" },
-    { name = "twine" },
-]
-release-binary = [
-    { name = "pyinstaller" },
-]
-release-dist = [
-    { name = "build" },
-    { name = "twine" },
-]
-yandex-cloud-logs = [
-    { name = "yandexcloud" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "import-linter" },
-    { name = "pre-commit" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "pytest-timeout" },
-    { name = "types-psutil" },
-    { name = "types-pyyaml" },
-    { name = "vulture" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "aiohttp", specifier = ">=3.9.0" },
-    { name = "anthropic", specifier = ">=0.77.1" },
-    { name = "apscheduler", specifier = ">=3.10.0,<4.0.0" },
-    { name = "boto3", specifier = ">=1.42.88" },
-    { name = "boto3-stubs", extras = ["essential"], marker = "extra == 'dev'" },
-    { name = "build", marker = "extra == 'release'", specifier = ">=1.2.0" },
-    { name = "build", marker = "extra == 'release-dist'", specifier = ">=1.2.0" },
-    { name = "click", specifier = ">=8.1.0" },
-    { name = "clickhouse-connect", specifier = ">=0.15.1,<1.0.0" },
-    { name = "clickhouse-connect", marker = "extra == 'clickhouse'", specifier = ">=0.15.1" },
-    { name = "confluent-kafka", marker = "extra == 'kafka'", specifier = ">=2.14.0" },
-    { name = "cryptography", specifier = ">=50.0.0,<51" },
-    { name = "datasets", marker = "extra == 'dev'", specifier = ">=3.0.0" },
-    { name = "datasets", marker = "extra == 'opensre-hub'", specifier = ">=3.0.0" },
-    { name = "discord-py", specifier = ">=2.4.0,<3" },
-    { name = "fastapi", specifier = ">=0.135.3" },
-    { name = "filelock", specifier = ">=3.29.0" },
-    { name = "google-api-python-client", specifier = ">=2.194.0,<3.0.0" },
-    { name = "google-auth", specifier = ">=2.0.0,<3.0.0" },
-    { name = "httpx", extras = ["socks"], specifier = ">=0.27.0" },
-    { name = "huggingface-hub", marker = "extra == 'dev'", specifier = ">=0.26.0" },
-    { name = "huggingface-hub", marker = "extra == 'opensre-hub'", specifier = ">=0.26.0" },
-    { name = "import-linter", marker = "extra == 'dev'", specifier = ">=2.0" },
-    { name = "kubernetes", specifier = ">=28.1.0" },
-    { name = "litellm", specifier = ">=1.90.0,<1.96.0" },
-    { name = "mcp", specifier = ">=1.28.1" },
-    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.10.0" },
-    { name = "numpy", specifier = ">=1.26.0" },
-    { name = "openai", specifier = ">=2.0.0" },
-    { name = "opentelemetry-api", specifier = ">=1.41.0" },
-    { name = "opentelemetry-exporter-otlp-proto-http", specifier = ">=1.41.0" },
-    { name = "opentelemetry-instrumentation", specifier = ">=0.40b0" },
-    { name = "opentelemetry-instrumentation-botocore", specifier = ">=0.40b0" },
-    { name = "opentelemetry-instrumentation-requests", specifier = ">=0.40b0" },
-    { name = "opentelemetry-sdk", specifier = ">=1.20.0" },
-    { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=4.0.0" },
-    { name = "prompt-toolkit", specifier = ">=3.0.0" },
-    { name = "psutil", specifier = ">=5.9" },
-    { name = "psycopg2-binary", marker = "extra == 'postgresql'", specifier = ">=2.9.0,<3.0.0" },
-    { name = "pydantic", specifier = ">=2.12.5,<3" },
-    { name = "pydantic-settings", specifier = ">=2.12.0,<3" },
-    { name = "pyinstaller", marker = "extra == 'release'", specifier = ">=6.3.0" },
-    { name = "pyinstaller", marker = "extra == 'release-binary'", specifier = ">=6.3.0" },
-    { name = "pyjwt", specifier = ">=2.13.0" },
-    { name = "pymongo", specifier = ">=4.6.0,<6.0.0" },
-    { name = "pymysql", specifier = ">=1.1.0,<2.0.0" },
-    { name = "pynacl", specifier = ">=1.5.0" },
-    { name = "pyodbc", marker = "extra == 'azure-sql'", specifier = ">=5.1.0,<6.0.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
-    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=1.3.0" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=7.1.0" },
-    { name = "pytest-timeout", marker = "extra == 'dev'", specifier = ">=2.3.0" },
-    { name = "pytest-xdist", marker = "extra == 'dev'", specifier = ">=3.5.0" },
-    { name = "python-dotenv", specifier = ">=1.2.2" },
-    { name = "pyyaml", specifier = ">=6.0" },
-    { name = "questionary", specifier = ">=2.1.1" },
-    { name = "redis", specifier = ">=5.0.0,<9.0.0" },
-    { name = "rich", specifier = ">=15.0.0" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.4.0" },
-    { name = "sentry-sdk", specifier = ">=2.59.0" },
-    { name = "slack-sdk", specifier = ">=3.31.0" },
-    { name = "tracer-decorator" },
-    { name = "twine", marker = "extra == 'release'", specifier = ">=6.0.0" },
-    { name = "twine", marker = "extra == 'release-dist'", specifier = ">=6.0.0" },
-    { name = "types-psutil", marker = "extra == 'dev'" },
-    { name = "types-psycopg2", marker = "extra == 'dev'" },
-    { name = "types-pymysql", marker = "extra == 'dev'" },
-    { name = "types-pyyaml", marker = "extra == 'dev'" },
-    { name = "types-requests", marker = "extra == 'dev'" },
-    { name = "tzdata", specifier = ">=2026.1" },
-    { name = "uvicorn", extras = ["standard"], specifier = ">=0.30.0" },
-    { name = "vulture", marker = "extra == 'dev'", specifier = ">=2.14" },
-    { name = "yandexcloud", marker = "extra == 'yandex-cloud-logs'", specifier = ">=0.300.0" },
-]
-provides-extras = ["dev", "release-dist", "release-binary", "release", "opensre-hub", "kafka", "clickhouse", "postgresql", "azure-sql", "yandex-cloud-logs"]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "import-linter", specifier = ">=2.0" },
-    { name = "pre-commit", specifier = ">=4.0.0" },
-    { name = "pytest", specifier = ">=9.0.3" },
-    { name = "pytest-cov", specifier = ">=7.1.0" },
-    { name = "pytest-timeout", specifier = ">=2.3.0" },
-    { name = "types-psutil", specifier = ">=7.2.2.20260408" },
-    { name = "types-pyyaml", specifier = ">=6.0.12" },
-    { name = "vulture", specifier = ">=2.14" },
 ]
 
 [[package]]
@@ -3940,8 +3940,8 @@ name = "secretstorage"
 version = "3.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cryptography", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
-    { name = "jeepney", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "cryptography" },
+    { name = "jeepney" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/1c/03/e834bcd866f2f8a49a85eaff47340affa3bfa391ee9912a952a1faa68c7b/secretstorage-3.5.0.tar.gz", hash = "sha256:f04b8e4689cbce351744d5537bf6b1329c6fc68f91fa666f60a380edddcd11be", size = 19884, upload-time = "2025-11-23T19:02:53.191Z" }
 wheels = [
