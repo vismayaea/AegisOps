@@ -1,0 +1,93 @@
+"""SMTP delivery helper for email notifications."""
+
+from __future__ import annotations
+
+import logging
+import smtplib
+from contextlib import suppress
+from email.message import EmailMessage
+from typing import Any
+
+logger = logging.getLogger(__name__)
+
+
+def _connect_client(config: dict[str, Any]) -> smtplib.SMTP:
+    host = str(config.get("host") or "").strip()
+    port = int(config.get("port") or 587)
+    security = str(config.get("security") or "starttls").strip().lower()
+    username = str(config.get("username") or "").strip()
+    password = str(config.get("password") or "")
+
+    if security == "ssl":
+        client: smtplib.SMTP = smtplib.SMTP_SSL(host, port, timeout=15)
+    else:
+        client = smtplib.SMTP(host, port, timeout=15)
+    try:
+        client.ehlo()
+        if security == "starttls":
+            client.starttls()
+            client.ehlo()
+        if username and password:
+            client.login(username, password)
+    except Exception:
+        with suppress(Exception):
+            client.close()
+        raise
+    return client
+
+
+def verify_smtp_connection(config: dict[str, Any]) -> tuple[bool, str]:
+    """Validate SMTP connectivity and optional authentication."""
+    try:
+        client = _connect_client(config)
+    except Exception as exc:  # noqa: BLE001
+        return False, f"SMTP connection failed: {exc}"
+    try:
+        client.noop()
+    except Exception as exc:  # noqa: BLE001
+        return False, f"SMTP NOOP failed: {exc}"
+    finally:
+        try:
+            client.quit()
+        except Exception:  # noqa: BLE001
+            client.close()
+    return True, "Connected to SMTP server successfully."
+
+
+def send_smtp_report(
+    *,
+    report: str,
+    subject: str,
+    smtp_ctx: dict[str, Any],
+    to_address: str = "",
+) -> tuple[bool, str]:
+    """Send a plain-text report via SMTP."""
+    recipient = to_address.strip() or str(smtp_ctx.get("default_to") or "").strip()
+    from_address = str(smtp_ctx.get("from_address") or "").strip()
+    if not recipient:
+        return False, "Missing recipient email address"
+    if not from_address:
+        return False, "Missing from_address"
+
+    message = EmailMessage()
+    message["Subject"] = subject
+    message["From"] = from_address
+    message["To"] = recipient
+    message.set_content(report)
+
+    try:
+        client = _connect_client(smtp_ctx)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[smtp] connection failed: %s", exc)
+        return False, type(exc).__name__
+    try:
+        client.send_message(message)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[smtp] send failed: %s", exc)
+        return False, type(exc).__name__
+    finally:
+        try:
+            client.quit()
+        except Exception:  # noqa: BLE001
+            client.close()
+    return True, ""
