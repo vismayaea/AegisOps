@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AegisOps Control Center</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">LOCAL SIMULATION ONLY</p>
+        <h1>AEGISOPS CONTROL CENTER</h1>
+        <p class="subtitle">AUTONOMOUS AI INCIDENT RESPONSE &amp; SRE PLATFORM</p>
+      </div>
+      <div class="top-actions">
+        <button id="runLifecycle">Run Full Lifecycle</button>
+        <button id="reset" class="secondary">Reset</button>
+      </div>
+    </header>
+
+    <section class="status-grid">
+      <article><span>SYSTEM STATUS</span><strong id="systemStatus">loading</strong></article>
+      <article><span>AI STATUS</span><strong id="aiStatus">loading</strong></article>
+      <article><span>LLM STATUS</span><strong id="llmStatus">loading</strong></article>
+      <article><span>ACTIVE INCIDENTS</span><strong id="activeIncidents">0</strong></article>
+      <article><span>TARGET SYSTEM</span><strong id="targetSystem">local deterministic simulation</strong></article>
+    </section>
+
+    <section class="workbench">
+      <div class="panel wide">
+        <div class="panel-head">
+          <h2>BEFORE / DURING / AFTER</h2>
+          <span id="scenarioName">healthy baseline</span>
+        </div>
+        <div class="metrics" id="metrics"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>INCIDENT SIMULATION LAB</h2>
+          <span>deterministic controls</span>
+        </div>
+        <div id="scenarioButtons" class="scenario-buttons"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>AI INVESTIGATION</h2><span>transparent pipeline</span></div>
+        <ol class="lifecycle" id="lifecycleSteps"></ol>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>OBSERVABILITY EVIDENCE</h2><span>logs / metrics / dependencies</span></div>
+        <div id="evidence" class="evidence"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>ROOT CAUSE ANALYSIS</h2><span id="confidence">--</span></div>
+        <div class="detail" id="rca"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>AUTONOMOUS RISK ENGINE</h2><span id="riskLevel">--</span></div>
+        <div class="risk-score" id="riskScore">--</div>
+        <div id="riskFactors" class="factors"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>REMEDIATION</h2><span>registered actions only</span></div>
+        <div id="remediation" class="detail"></div>
+        <div class="inline-actions">
+          <button id="approve">Authorize</button>
+          <button id="execute">Execute</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>RECOVERY VERIFICATION</h2><span id="recoveryState">pending</span></div>
+        <div id="recovery" class="factors"></div>
+      </div>
+
+      <div class="panel wide">
+        <div class="panel-head"><h2>INCIDENT TRACE</h2><span>decision audit</span></div>
+        <div id="trace" class="trace"></div>
+      </div>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

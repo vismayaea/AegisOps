@@ -1,0 +1,121 @@
+:root {
+  color-scheme: dark;
+  --bg: #101418;
+  --panel: #171d22;
+  --panel-2: #1d252b;
+  --text: #eef5f3;
+  --muted: #9fb0ad;
+  --line: #2e3a40;
+  --green: #35d08a;
+  --amber: #f2bd4d;
+  --red: #f06d64;
+  --cyan: #61c7dc;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+.shell { width: min(1440px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 40px; }
+
+.masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow, .subtitle, .panel-head span, article span {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h1 { margin: 6px 0 8px; font-size: clamp(34px, 6vw, 76px); line-height: .9; letter-spacing: 0; }
+h2 { margin: 0; font-size: 15px; letter-spacing: 0; }
+
+button {
+  border: 1px solid #4aa77f;
+  background: #247656;
+  color: white;
+  border-radius: 6px;
+  min-height: 40px;
+  padding: 0 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button.secondary { background: transparent; border-color: var(--line); color: var(--text); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+
+.top-actions, .inline-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+article, .panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+article { min-height: 92px; padding: 16px; display: grid; align-content: space-between; }
+article strong { font-size: 22px; text-transform: uppercase; }
+
+.workbench { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.panel { padding: 16px; min-width: 0; }
+.panel.wide { grid-column: span 2; }
+.panel-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 14px; }
+
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.metric-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 14px; min-height: 158px; }
+.metric-card h3 { margin: 0 0 12px; font-size: 14px; text-transform: uppercase; color: var(--cyan); }
+.metric-row, .factor-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+.metric-row span, .factor-row span { color: var(--muted); }
+
+.scenario-buttons { display: grid; gap: 10px; }
+.scenario-buttons button { width: 100%; text-align: left; background: #202a31; border-color: var(--line); }
+.scenario-buttons button.active { border-color: var(--cyan); color: var(--cyan); }
+
+.lifecycle { margin: 0; padding-left: 22px; color: var(--muted); }
+.lifecycle li { margin: 9px 0; }
+.lifecycle li.done { color: var(--green); }
+
+.evidence, .trace { display: grid; gap: 8px; max-height: 320px; overflow: auto; }
+.evidence-item, .trace-item { background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 10px; }
+.evidence-item strong, .trace-item strong { display: block; margin-bottom: 4px; }
+.evidence-item small, .trace-item small { color: var(--muted); }
+
+.detail { display: grid; gap: 10px; color: var(--muted); }
+.detail strong { color: var(--text); }
+.risk-score { font-size: 52px; font-weight: 900; color: var(--amber); margin: 8px 0 10px; }
+.factors { display: grid; gap: 4px; }
+.ok { color: var(--green); }
+.warn { color: var(--amber); }
+.bad { color: var(--red); }
+
+@media (max-width: 1080px) {
+  .status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .workbench { grid-template-columns: 1fr; }
+  .panel.wide { grid-column: span 1; }
+  .metrics { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .shell { width: min(100% - 20px, 1440px); padding-top: 18px; }
+  .masthead { align-items: stretch; flex-direction: column; }
+  .status-grid { grid-template-columns: 1fr; }
+}

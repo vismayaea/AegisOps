@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aegisops"
+version = "0.1.0"
+description = "AegisOps autonomous incident response simulation platform"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "AegisOps" }]
+keywords = ["aegisops", "incident-response", "sre", "simulation", "rca"]
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+  "pydantic>=2.6",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "httpx>=0.27",
+]
+
+[project.scripts]
+aegisops = "aegisops.api.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["aegisops*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["src"]
